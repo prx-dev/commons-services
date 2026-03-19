@@ -120,7 +120,7 @@ IMPORTANTE CONSIDERAR:
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-core</artifactId>
-            <version>11.0.15</version>
+            <version>11.0.18</version>
             <scope>provided</scope>
         </dependency>
 
