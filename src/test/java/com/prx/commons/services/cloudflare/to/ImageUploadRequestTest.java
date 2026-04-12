@@ -81,7 +81,8 @@ class ImageUploadRequestTest {
         Map<String, String> mutable = new HashMap<>();
         mutable.put("k", "v");
         ImageUploadRequest req = new ImageUploadRequest(null, VALID_DATA, JPEG, mutable);
-        assertThrows(UnsupportedOperationException.class, () -> req.metadata().put("x", "y"));
+        String result = req.metadata().put("x", "y")
+        assertThrows(UnsupportedOperationException.class, () -> result);
     }
 
     // =========================================================================
@@ -135,5 +136,40 @@ class ImageUploadRequestTest {
         ImageUploadRequest req = ImageUploadRequest.of("k", VALID_DATA, JPEG, meta);
         assertEquals("k", req.objectKey());
         assertEquals("web", req.metadata().get("source"));
+    }
+
+    // =========================================================================
+    // equals / hashCode — content-based for byte[]
+    // =========================================================================
+
+    @Test
+    @DisplayName("equals returns true for same byte content in different array instances")
+    void equalsContentBased() {
+        byte[] a = new byte[]{1, 2, 3};
+        byte[] b = new byte[]{1, 2, 3};
+        ImageUploadRequest r1 = new ImageUploadRequest("key", a, JPEG, null);
+        ImageUploadRequest r2 = new ImageUploadRequest("key", b, JPEG, null);
+        assertEquals(r1, r2);
+        assertEquals(r1.hashCode(), r2.hashCode());
+    }
+
+    @Test
+    @DisplayName("equals returns false when byte content differs")
+    void equalsReturnsFalseForDifferentData() {
+        ImageUploadRequest r1 = new ImageUploadRequest("key", new byte[]{1, 2, 3}, JPEG, null);
+        ImageUploadRequest r2 = new ImageUploadRequest("key", new byte[]{9, 9, 9}, JPEG, null);
+        assertNotNull(r1);
+        assertNotNull(r2);
+        assertNotSame(r1, r2);
+        assertTrue(!r1.equals(r2));
+    }
+
+    @Test
+    @DisplayName("toString includes objectKey, contentType, and metadata")
+    void toStringIncludesFields() {
+        ImageUploadRequest req = new ImageUploadRequest("my/key", VALID_DATA, JPEG, null);
+        String str = req.toString();
+        assertTrue(str.contains("my/key"));
+        assertTrue(str.contains(JPEG));
     }
 }
