@@ -81,8 +81,8 @@ class ImageUploadRequestTest {
         Map<String, String> mutable = new HashMap<>();
         mutable.put("k", "v");
         ImageUploadRequest req = new ImageUploadRequest(null, VALID_DATA, JPEG, mutable);
-        String result = req.metadata().put("x", "y")
-        assertThrows(UnsupportedOperationException.class, () -> result);
+        var map = req.metadata();
+        assertThrows(UnsupportedOperationException.class, () -> map.put("x", "y"));
     }
 
     // =========================================================================
