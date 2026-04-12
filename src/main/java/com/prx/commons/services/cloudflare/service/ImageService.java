@@ -137,7 +137,7 @@ public interface ImageService {
      * @throws ImageStorageException if an error occurs while retrieving the image reference
      */
     default ResponseEntity<ImageReferenceResponse> getReference(String objectKey)
-            throws ImageNotFoundException, ImageStorageException {
+            throws ImageStorageException {
         throw new UnsupportedOperationException("getReference not implemented");
     }
 

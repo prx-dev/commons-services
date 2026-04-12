@@ -285,7 +285,7 @@ public interface ImageApi {
             @RequestHeader(SESSION_TOKEN_KEY) String token,
             @Parameter(description = "Storage key / path of the image", required = true)
             @RequestParam String objectKey)
-            throws ImageNotFoundException, ImageStorageException {
+            throws ImageStorageException {
         return ResponseEntity.status(HttpStatusUtil.NOT_IMPLEMENTED).body(null);
     }
 

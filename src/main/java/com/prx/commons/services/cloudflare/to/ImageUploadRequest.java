@@ -13,6 +13,7 @@
 
 package com.prx.commons.services.cloudflare.to;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
@@ -105,5 +106,30 @@ public record ImageUploadRequest(
     public static ImageUploadRequest of(String objectKey, byte[] data, String contentType,
                                         Map<String, String> metadata) {
         return new ImageUploadRequest(objectKey, data, contentType, metadata);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ImageUploadRequest(String key, byte[] data1, String type, Map<String, String> metadata1))) return false;
+        return Objects.equals(objectKey, key)
+                && Arrays.equals(data, data1)
+                && Objects.equals(contentType, type)
+                && Objects.equals(metadata, metadata1);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(objectKey, contentType, metadata);
+        result = 31 * result + Arrays.hashCode(data);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "ImageUploadRequest[objectKey=" + objectKey
+                + ", data=" + Arrays.toString(data)
+                + ", contentType=" + contentType
+                + ", metadata=" + metadata + "]";
     }
 }
