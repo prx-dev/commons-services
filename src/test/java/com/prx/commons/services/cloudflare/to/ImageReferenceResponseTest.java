@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DisplayName("ImageReferenceResponse")
 class ImageReferenceResponseTest {
@@ -43,8 +44,8 @@ class ImageReferenceResponseTest {
     void toStringContainsValues() {
         ImageReferenceResponse resp = new ImageReferenceResponse("mykey", "myurl", "image/gif");
         String str = resp.toString();
-        assert str.contains("mykey");
-        assert str.contains("myurl");
-        assert str.contains("image/gif");
+        assertTrue(str.contains("mykey"));
+        assertTrue(str.contains("myurl"));
+        assertTrue(str.contains("image/gif"));
     }
 }

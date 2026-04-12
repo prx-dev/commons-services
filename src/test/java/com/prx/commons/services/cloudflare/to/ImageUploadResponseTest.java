@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DisplayName("ImageUploadResponse")
 class ImageUploadResponseTest {
@@ -37,9 +38,9 @@ class ImageUploadResponseTest {
     void toStringContainsValues() {
         ImageUploadResponse resp = new ImageUploadResponse("mykey", "myurl", "image/gif", 999L);
         String str = resp.toString();
-        assert str.contains("mykey");
-        assert str.contains("myurl");
-        assert str.contains("image/gif");
-        assert str.contains("999");
+        assertTrue(str.contains("mykey"));
+        assertTrue(str.contains("myurl"));
+        assertTrue(str.contains("image/gif"));
+        assertTrue(str.contains("999"));
     }
 }

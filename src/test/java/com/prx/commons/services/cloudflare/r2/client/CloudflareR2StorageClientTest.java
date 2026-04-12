@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -156,8 +157,7 @@ class CloudflareR2StorageClientTest {
     @DisplayName("close is a no-op when S3Client has not been initialized")
     void closeWhenNotInitialized() {
         CloudflareR2StorageClient client = new CloudflareR2StorageClient(properties);
-        // Should not throw
-        client.close();
+        assertDoesNotThrow(client::close);
     }
 
     @Test

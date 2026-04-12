@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DisplayName("ImageApi default stubs")
 class ImageApiTest {
@@ -93,6 +94,6 @@ class ImageApiTest {
     @Test
     @DisplayName("getService returns an ImageService instance")
     void getServiceIsImageService() {
-        assertNotNull(api.getService() instanceof ImageService);
+        assertTrue(api.getService() instanceof ImageService);
     }
 }
