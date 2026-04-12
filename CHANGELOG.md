@@ -5,9 +5,26 @@ This file follows a simple "Unreleased" top section for ongoing work and dated e
 
 ---
 
-## [Unreleased] - 2026-02-09
+## [Unreleased] - 2026-04-12
 
 ### Added
+- **Cloudflare Images integration** (`ds-209`): new general-purpose image management API and service contracts for Cloudflare R2 / S3-compatible storage:
+  - `ImageApi` — Spring MVC interface with `upload`, `download`, `delete`, and `list` endpoints (default methods return HTTP 501); supports multipart upload and session-token authentication header.
+  - `ImageService` — service contract mirroring `ImageApi` operations; follows the default-method stub pattern so consumers implement only what they need.
+  - Transfer objects: `ImageUploadRequest`, `ImageUploadResponse`, `ImageReferenceResponse`.
+  - Domain exceptions: `ImageDeleteException`, `ImageDownloadException`, `ImageNotFoundException`, `ImageStorageException`, `ImageUploadException`, `ImageValidationException`.
+- AWS SDK v2 `s3` dependency added (`software.amazon.awssdk:s3:2.21.0`) to support `CloudflareR2StorageClient`.
+- `prx-commons` (`com.prx:prx-commons:0.0.1`) declared as an explicit managed dependency.
+- `.ai/` directory with agent, role, conference, and skill configuration files for AI-assisted development workflows.
+- `.github/prompts/` directory with structured prompt files for agents, features, skills, and shared baseline/restrictions.
+- `AGENTS.md` with contributor guidance for AI agents working in this repository.
+
+### Changed
+- Project version bumped from `0.0.1` to `0.0.2`.
+- Apache Tomcat embed version centralized to property `apache.tomcat.version` (updated to `11.0.18`).
+- Repsy repository URLs corrected (removed erroneous `/mvn` path segment).
+
+
 - Unit tests added or extended for core logging components:
   - `LogInterceptor` — comprehensive happy path and edge-case coverage.
   - `RequestBodyInterceptor` — tests for null/empty bodies and large payloads.
@@ -93,5 +110,5 @@ Legend: [x] Done, [~] In progress / conditional / requires follow-up
 
 ---
 
-_Last updated: 2026-02-09_
+_Last updated: 2026-04-12_
 

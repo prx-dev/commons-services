@@ -14,7 +14,7 @@ IMPORTANTE CONSIDERAR:
     <groupId>com.prx</groupId>
     <artifactId>commons-services</artifactId>
     <name>PRX Commons Services components</name>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -51,6 +51,9 @@ IMPORTANTE CONSIDERAR:
         <maven.plugin.jxr.version>3.0.0</maven.plugin.jxr.version>
         <maven.surefire.version>3.5.2</maven.surefire.version>
 
+        <!--        PRX Commons-->
+        <com.prx.commons.version>0.0.1</com.prx.commons.version>
+
         <!--        SPRING -->
         <spring-boot.version>3.5.8</spring-boot.version>
         <spring-cloud.version>2025.0.1</spring-cloud.version>
@@ -62,6 +65,8 @@ IMPORTANTE CONSIDERAR:
         <asm.version>9.7</asm.version>
         <rewrite.plugin.version>5.42.0</rewrite.plugin.version>
         <rewrite.recipe.version>5.21.0</rewrite.recipe.version>
+        <aws.sdk.version>2.21.0</aws.sdk.version>
+        <apache.tomcat.version>11.0.18</apache.tomcat.version>
 
         <!--        Test Dependencies-->
         <!--        JUnit 5.x-->
@@ -85,6 +90,12 @@ IMPORTANTE CONSIDERAR:
     </properties>
 
     <dependencies>
+        <!--        PRX Dependencies-->
+        <dependency>
+            <groupId>com.prx</groupId>
+            <artifactId>prx-commons</artifactId>
+            <version>${com.prx.commons.version}</version>
+        </dependency>
         <!-- Commons dependencies -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -113,6 +124,11 @@ IMPORTANTE CONSIDERAR:
             <version>${mapstruct.version}</version>
         </dependency>
         <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>s3</artifactId>
+            <version>${aws.sdk.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
         </dependency>
@@ -120,7 +136,7 @@ IMPORTANTE CONSIDERAR:
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-core</artifactId>
-            <version>11.0.15</version>
+            <version>${apache.tomcat.version}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -193,7 +209,7 @@ IMPORTANTE CONSIDERAR:
         <repository>
             <id>repsy</id>
             <name>My Private Maven Repository on Repsy</name>
-            <url>https://repo.repsy.io/mvn/lmata/prx</url>
+            <url>https://repo.repsy.io/lmata/prx</url>
         </repository>
         <repository>
             <id>maven_central</id>
@@ -211,7 +227,7 @@ IMPORTANTE CONSIDERAR:
         <pluginRepository>
             <id>repsy</id>
             <name>Repsy Plugin Repo</name>
-            <url>https://repo.repsy.io/mvn/lmata/prx</url>
+            <url>https://repo.repsy.io/lmata/prx</url>
         </pluginRepository>
     </pluginRepositories>
 
@@ -219,7 +235,7 @@ IMPORTANTE CONSIDERAR:
         <repository>
             <id>repsy</id>
             <name>My Private Maven Repository on Repsy</name>
-            <url>https://repo.repsy.io/mvn/lmata/prx</url>
+            <url>https://repo.repsy.io/lmata/prx</url>
         </repository>
     </distributionManagement>
 
