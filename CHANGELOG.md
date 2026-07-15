@@ -5,7 +5,7 @@ This file follows a simple "Unreleased" top section for ongoing work and dated e
 
 ---
 
-## [Unreleased] - 2026-04-12
+## [Unreleased] - 2026-04-30
 
 ### Added
 - **Cloudflare Images integration** (`ds-209`): new general-purpose image management API and service contracts for Cloudflare R2 / S3-compatible storage:
@@ -20,9 +20,8 @@ This file follows a simple "Unreleased" top section for ongoing work and dated e
 - `AGENTS.md` with contributor guidance for AI agents working in this repository.
 
 ### Changed
-- Project version bumped from `0.0.1` to `0.0.2`.
-- Apache Tomcat embed version centralized to property `apache.tomcat.version` (updated to `11.0.18`).
-- Repsy repository URLs corrected (removed erroneous `/mvn` path segment).
+- **`ClientRestTemplate`** — `MappingJackson2HttpMessageConverter` is deprecated since Spring Framework 7.0 in favour of `JacksonJsonHttpMessageConverter`. Full migration is blocked: `JacksonJsonHttpMessageConverter` requires Jackson 3.x (`tools.jackson`) which is not yet on the classpath (project currently uses Jackson 2.x `com.fasterxml.jackson`). A `@SuppressWarnings("deprecation")` annotation and Javadoc migration note have been added to `ClientRestTemplate` to track this until the Jackson 3.x upgrade is completed.
+- Apache Tomcat embed version centralized to property `apache.tomcat.version` (updated to `11.0.21`).
 
 
 - Unit tests added or extended for core logging components:
@@ -102,7 +101,8 @@ Legend: [x] Done, [~] In progress / conditional / requires follow-up
 ---
 
 ## Future work / Recommendations
-1. Run the CVE Remediator tool regularly and pin updated versions as needed.
+1. **Migrate to Jackson 3.x** (`tools.jackson`): required to complete the replacement of deprecated `MappingJackson2HttpMessageConverter` with `JacksonJsonHttpMessageConverter` in `ClientRestTemplate`, `RequestBodyInterceptorTest`, and `ResponseBodyInterceptorTest`. Coordinate with the Spring Boot 4.x / Spring Framework 7.x dependency consolidation.
+2. Run the CVE Remediator tool regularly and pin updated versions as needed.
 2. Replace temporary VM flags with library upgrades where possible (especially byte-buddy and mockito).
 3. Add end-to-end tests in a separate pipeline stage using lightweight testbed environments (Docker Compose or testcontainers) to validate Eureka and other infra interactions.
 4. Publish a versioned release (for example, `v2.0.0` or `v4-migration-1`) once all downstream projects validate the upgrade.
@@ -110,5 +110,5 @@ Legend: [x] Done, [~] In progress / conditional / requires follow-up
 
 ---
 
-_Last updated: 2026-04-12_
+_Last updated: 2026-04-30_
 

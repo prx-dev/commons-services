@@ -25,10 +25,10 @@ skills:
       Preserve safe, consumer-friendly defaults in shared interfaces so that
       downstream microservices only override the operations they actually need.
     applies_to:
-      - src/main/java/com/prx/commons/services/CrudService.java
-      - src/main/java/com/prx/commons/services/cloudflare/controller/ProfileImageApi.java
-      - src/main/java/com/prx/commons/services/cloudflare/service/ProfileImageService.java
-      - src/main/java/com/prx/commons/services/loggers/LoggingService.java
+      - src/main/java/com/umdc/commons/services/CrudService.java
+      - src/main/java/com/umdc/commons/services/cloudflare/controller/ProfileImageApi.java
+      - src/main/java/com/umdc/commons/services/cloudflare/service/ProfileImageService.java
+      - src/main/java/com/umdc/commons/services/loggers/LoggingService.java
     guardrails:
       - CrudService defaults MUST return ResponseEntity with HttpStatus.NOT_IMPLEMENTED (HTTP 501).
       - ProfileImageService defaults MUST throw UnsupportedOperationException.
@@ -37,9 +37,9 @@ skills:
       - Prefer additive API evolution (new methods with defaults) over signature changes.
       - Never remove or rename existing public interface methods.
     examples:
-      - src/main/java/com/prx/commons/services/CrudService.java
-      - src/main/java/com/prx/commons/services/cloudflare/service/ProfileImageService.java
-      - src/main/java/com/prx/commons/services/cloudflare/controller/ProfileImageApi.java
+      - src/main/java/com/umdc/commons/services/CrudService.java
+      - src/main/java/com/umdc/commons/services/cloudflare/service/ProfileImageService.java
+      - src/main/java/com/umdc/commons/services/cloudflare/controller/ProfileImageApi.java
     patterns:
       crud_default: |
         default ResponseEntity<T> create(T t) {
@@ -59,7 +59,7 @@ skills:
       Minimise downstream breakage for the microservices that consume this
       shared library JAR from the Repsy repository.
     applies_to:
-      - src/main/java/com/prx/commons/services/
+      - src/main/java/com/umdc/commons/services/
     guardrails:
       - Never change the signature of a published public method.
       - Never change the return type of a published public method.
@@ -67,8 +67,8 @@ skills:
       - When adding a method to an interface, always provide a default implementation.
       - When adding a field to a @ConfigurationProperties class, make it optional (no required=true).
     examples:
-      - src/main/java/com/prx/commons/services/CrudService.java
-      - src/main/java/com/prx/commons/services/cloudflare/controller/ProfileImageApi.java
+      - src/main/java/com/umdc/commons/services/CrudService.java
+      - src/main/java/com/umdc/commons/services/cloudflare/controller/ProfileImageApi.java
 
   # ---------------------------------------------------------------------------
   # interceptor-logging-flow
@@ -78,7 +78,7 @@ skills:
       Maintain the three-layer HTTP logging pipeline without introducing
       controller-specific coupling or bypassing the LoggingService contract.
     applies_to:
-      - src/main/java/com/prx/commons/services/loggers/
+      - src/main/java/com/umdc/commons/services/loggers/
     guardrails:
       - LogInterceptor MUST fire in preHandle for GET, POST, PUT, DELETE only.
       - LogInterceptor MUST pass null as body (body not available at preHandle).
@@ -90,10 +90,10 @@ skills:
       - Never add a logging bypass in a specific controller or endpoint.
       - LoggingServiceImp MUST use ConcurrentHashMap when collecting headers/parameters.
     examples:
-      - src/main/java/com/prx/commons/services/loggers/interceptor/LogInterceptor.java
-      - src/main/java/com/prx/commons/services/loggers/interceptor/RequestBodyInterceptor.java
-      - src/main/java/com/prx/commons/services/loggers/interceptor/ResponseBodyInterceptor.java
-      - src/main/java/com/prx/commons/services/loggers/LoggingServiceImp.java
+      - src/main/java/com/umdc/commons/services/loggers/interceptor/LogInterceptor.java
+      - src/main/java/com/umdc/commons/services/loggers/interceptor/RequestBodyInterceptor.java
+      - src/main/java/com/umdc/commons/services/loggers/interceptor/ResponseBodyInterceptor.java
+      - src/main/java/com/umdc/commons/services/loggers/LoggingServiceImp.java
     patterns:
       log_interceptor_prehandle: |
         @Override
@@ -117,7 +117,7 @@ skills:
       Build and configure an S3-compatible client for Cloudflare R2, preserving
       the three non-negotiable settings that ensure R2 compatibility.
     applies_to:
-      - src/main/java/com/prx/commons/services/cloudflare/r2/client/CloudflareR2StorageClient.java
+      - src/main/java/com/umdc/commons/services/cloudflare/r2/client/CloudflareR2StorageClient.java
     guardrails:
       - pathStyleAccessEnabled MUST be true — R2 does not support virtual-hosted-style URLs.
       - chunkedEncodingEnabled MUST be false — chunked encoding causes HTTP 403 on R2.
@@ -127,7 +127,7 @@ skills:
       - Do NOT log accessKey or secretKey values at INFO or DEBUG level.
       - close() MUST null-check before closing.
     examples:
-      - src/main/java/com/prx/commons/services/cloudflare/r2/client/CloudflareR2StorageClient.java
+      - src/main/java/com/umdc/commons/services/cloudflare/r2/client/CloudflareR2StorageClient.java
     patterns:
       s3_client_build: |
         S3Configuration serviceConfiguration = S3Configuration.builder()
@@ -149,7 +149,7 @@ skills:
       Annotate REST interface methods with SpringDoc OpenAPI annotations
       so that consuming services get Swagger UI documentation automatically.
     applies_to:
-      - src/main/java/com/prx/commons/services/cloudflare/controller/ProfileImageApi.java
+      - src/main/java/com/umdc/commons/services/cloudflare/controller/ProfileImageApi.java
     guardrails:
       - Use HttpStatusUtil constants in @ApiResponse responseCode fields.
       - Every endpoint method MUST have @Operation(summary, description).
@@ -157,7 +157,7 @@ skills:
       - Every @PathVariable and @RequestHeader MUST have a @Parameter annotation.
       - Never use raw numeric status strings (e.g., "200") — use HttpStatusUtil constants.
     examples:
-      - src/main/java/com/prx/commons/services/cloudflare/controller/ProfileImageApi.java
+      - src/main/java/com/umdc/commons/services/cloudflare/controller/ProfileImageApi.java
 
   # ---------------------------------------------------------------------------
   # mapstruct-consistency
@@ -167,14 +167,14 @@ skills:
       Ensure all MapStruct mappers use the shared MapperAppConfig base
       configuration for consistent behavior across consuming services.
     applies_to:
-      - src/main/java/com/prx/commons/services/config/mapper/
+      - src/main/java/com/umdc/commons/services/config/mapper/
     guardrails:
       - All @Mapper interfaces MUST declare config = MapperAppConfig.class.
       - componentModel MUST be SPRING — mappers are Spring beans.
       - nullValuePropertyMappingStrategy MUST be SET_TO_NULL.
       - unmappedSourcePolicy and unmappedTargetPolicy MUST be IGNORE.
     examples:
-      - src/main/java/com/prx/commons/services/config/mapper/MapperAppConfig.java
+      - src/main/java/com/umdc/commons/services/config/mapper/MapperAppConfig.java
     patterns:
       mapper_declaration: |
         @Mapper(config = MapperAppConfig.class)
@@ -190,8 +190,8 @@ skills:
       Create and maintain @ConfigurationProperties classes that bind
       external configuration to typed Java objects.
     applies_to:
-      - src/main/java/com/prx/commons/services/properties/
-      - src/main/java/com/prx/commons/services/cloudflare/properties/
+      - src/main/java/com/umdc/commons/services/properties/
+      - src/main/java/com/umdc/commons/services/cloudflare/properties/
     guardrails:
       - Every new properties class MUST have an explicit no-arg constructor with a comment.
       - Properties MUST use explicit getters and setters — no Lombok, no @Data.
@@ -200,8 +200,8 @@ skills:
       - Annotate top-level classes with @ConfigurationProperties(prefix = "...") and @Component
         or @Configuration as appropriate.
     examples:
-      - src/main/java/com/prx/commons/services/cloudflare/properties/CloudflareR2Properties.java
-      - src/main/java/com/prx/commons/services/properties/SecurityProperties.java
+      - src/main/java/com/umdc/commons/services/cloudflare/properties/CloudflareR2Properties.java
+      - src/main/java/com/umdc/commons/services/properties/SecurityProperties.java
 
   # ---------------------------------------------------------------------------
   # rest-template-config
@@ -212,13 +212,13 @@ skills:
       so that request/response bodies can be read multiple times
       (required for the logging interceptors).
     applies_to:
-      - src/main/java/com/prx/commons/services/rest/ClientRestTemplate.java
+      - src/main/java/com/umdc/commons/services/rest/ClientRestTemplate.java
     guardrails:
       - Always use BufferingClientHttpRequestFactory — not SimpleClientHttpRequestFactory directly.
       - MappingJackson2HttpMessageConverter MUST be supplied via constructor injection.
       - Supported media type MUST include APPLICATION_JSON at minimum.
     examples:
-      - src/main/java/com/prx/commons/services/rest/ClientRestTemplate.java
+      - src/main/java/com/umdc/commons/services/rest/ClientRestTemplate.java
 
   # ---------------------------------------------------------------------------
   # jackson-configuration
@@ -228,12 +228,12 @@ skills:
       Configure Jackson ObjectMapper with JavaTimeModule so that Java 8+
       date/time types serialize and deserialize correctly.
     applies_to:
-      - src/main/java/com/prx/commons/services/config/mapper/JacksonConfig.java
+      - src/main/java/com/umdc/commons/services/config/mapper/JacksonConfig.java
     guardrails:
       - Always register JavaTimeModule on the ObjectMapper bean.
       - The ObjectMapper bean MUST be a @Bean in a @Configuration class.
     examples:
-      - src/main/java/com/prx/commons/services/config/mapper/JacksonConfig.java
+      - src/main/java/com/umdc/commons/services/config/mapper/JacksonConfig.java
 
   # ---------------------------------------------------------------------------
   # maven-build-workflow
@@ -290,9 +290,9 @@ skills:
       - Each test class should cover one unit (one interface, one class).
       - Test coverage for new code must not drop below the 80% line / 50% branch thresholds.
     examples:
-      - src/test/java/com/prx/commons/services/CrudServiceTest.java
-      - src/test/java/com/prx/commons/services/loggers/LoggingServiceImpUnitTest.java
-      - src/test/java/com/prx/commons/services/loggers/interceptor/LogInterceptorTest.java
+      - src/test/java/com/umdc/commons/services/CrudServiceTest.java
+      - src/test/java/com/umdc/commons/services/loggers/LoggingServiceImpUnitTest.java
+      - src/test/java/com/umdc/commons/services/loggers/interceptor/LogInterceptorTest.java
 
   # ---------------------------------------------------------------------------
   # profile-image-contracts
@@ -302,14 +302,14 @@ skills:
       Keep ProfileImageApi and ProfileImageService contracts aligned with
       the shared HttpStatusUtil constants and CloudflareR2StorageClient.
     applies_to:
-      - src/main/java/com/prx/commons/services/cloudflare/controller/ProfileImageApi.java
-      - src/main/java/com/prx/commons/services/cloudflare/service/ProfileImageService.java
+      - src/main/java/com/umdc/commons/services/cloudflare/controller/ProfileImageApi.java
+      - src/main/java/com/umdc/commons/services/cloudflare/service/ProfileImageService.java
     guardrails:
       - All API response status codes MUST use HttpStatusUtil constants, not raw integers.
       - session-token header key MUST use the SESSION_TOKEN_KEY constant.
       - Transfer objects MUST be Java records (PostProfileImageResponse, GetProfileImageReferenceResponse).
     examples:
-      - src/main/java/com/prx/commons/services/cloudflare/controller/ProfileImageApi.java
+      - src/main/java/com/umdc/commons/services/cloudflare/controller/ProfileImageApi.java
 
   # ---------------------------------------------------------------------------
   # dependency-source-of-truth

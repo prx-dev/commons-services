@@ -11,15 +11,15 @@ IMPORTANTE CONSIDERAR:
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.prx</groupId>
+    <groupId>com.umdc</groupId>
     <artifactId>commons-services</artifactId>
-    <name>PRX Commons Services components</name>
-    <version>0.0.2</version>
+    <name>UMDC Commons Services components</name>
+    <version>0.0.1</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.8</version>
+        <version>4.1.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -28,9 +28,9 @@ IMPORTANTE CONSIDERAR:
             <id>lmata</id>
             <name>Luis Antonio Mata</name>
             <email>luis.antonio.mata@gmail.com</email>
-            <url>www.prx-dev.com</url>
-            <organization>PRX Dev Innova</organization>
-            <organizationUrl>www.prx.com</organizationUrl>
+            <url>www.umdc-dev.com</url>
+            <organization>UM DevCreative</organization>
+            <organizationUrl>www.umdc.com</organizationUrl>
         </developer>
     </developers>
 
@@ -52,25 +52,25 @@ IMPORTANTE CONSIDERAR:
         <maven.surefire.version>3.5.2</maven.surefire.version>
 
         <!--        PRX Commons-->
-        <com.prx.commons.version>0.0.1</com.prx.commons.version>
+        <com.umdc.commons.version>0.0.1</com.umdc.commons.version>
 
         <!--        SPRING -->
-        <spring-boot.version>3.5.8</spring-boot.version>
-        <spring-cloud.version>2025.0.1</spring-cloud.version>
-        <spring-core.version>6.2.1</spring-core.version>
+        <spring-boot.version>4.1.0</spring-boot.version>
+        <spring-cloud.version>2025.1.2</spring-cloud.version>
+        <spring-core.version>7.0.8</spring-core.version>
 
         <!-- Centralized explicit versions previously hard-coded in dependencies -->
         <mapstruct.version>1.6.3</mapstruct.version>
-        <log4j.version>2.25.3</log4j.version>
+        <log4j.version>2.25.4</log4j.version>
         <asm.version>9.7</asm.version>
         <rewrite.plugin.version>5.42.0</rewrite.plugin.version>
         <rewrite.recipe.version>5.21.0</rewrite.recipe.version>
         <aws.sdk.version>2.21.0</aws.sdk.version>
-        <apache.tomcat.version>11.0.18</apache.tomcat.version>
+        <apache.tomcat.version>11.0.22</apache.tomcat.version>
 
         <!--        Test Dependencies-->
-        <!--        JUnit 5.x-->
-        <junit.jupiter.version>5.14.1</junit.jupiter.version>
+        <!--        JUnit 6.x-->
+        <junit.jupiter.version>6.0.3</junit.jupiter.version>
         <!--        Mockito-->
         <mockito.version>5.21.0</mockito.version>
 
@@ -92,9 +92,9 @@ IMPORTANTE CONSIDERAR:
     <dependencies>
         <!--        PRX Dependencies-->
         <dependency>
-            <groupId>com.prx</groupId>
-            <artifactId>prx-commons</artifactId>
-            <version>${com.prx.commons.version}</version>
+            <groupId>com.umdc</groupId>
+            <artifactId>commons</artifactId>
+            <version>${com.umdc.commons.version}</version>
         </dependency>
         <!-- Commons dependencies -->
         <dependency>

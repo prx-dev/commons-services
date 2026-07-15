@@ -42,12 +42,12 @@ developer_agents:
       - openapi-annotation
       - lightweight-unit-testing
     ownedAreas:
-      - src/main/java/com/prx/commons/services/CrudService.java
-      - src/main/java/com/prx/commons/services/loggers/LoggingService.java
-      - src/main/java/com/prx/commons/services/cloudflare/controller/ProfileImageApi.java
-      - src/main/java/com/prx/commons/services/cloudflare/service/ProfileImageService.java
-      - src/main/java/com/prx/commons/services/cloudflare/to/
-      - src/test/java/com/prx/commons/services/
+      - src/main/java/com/umdc/commons/services/CrudService.java
+      - src/main/java/com/umdc/commons/services/loggers/LoggingService.java
+      - src/main/java/com/umdc/commons/services/cloudflare/controller/ProfileImageApi.java
+      - src/main/java/com/umdc/commons/services/cloudflare/service/ProfileImageService.java
+      - src/main/java/com/umdc/commons/services/cloudflare/to/
+      - src/test/java/com/umdc/commons/services/
     rules:
       - REQUIRE_BACKWARD_COMPAT
       - REQUIRE_SAFE_DEFAULT_METHODS
@@ -64,8 +64,8 @@ developer_agents:
       - ADD_NEW_INTERFACES
       - ADD_OPENAPI_ANNOTATIONS
     off_limits:
-      - src/main/java/com/prx/commons/services/cloudflare/r2/
-      - src/main/java/com/prx/commons/services/loggers/
+      - src/main/java/com/umdc/commons/services/cloudflare/r2/
+      - src/main/java/com/umdc/commons/services/loggers/
       - pom.xml
       - .github/workflows/
     compatibility:
@@ -90,9 +90,9 @@ developer_agents:
       - property-binding
       - lightweight-unit-testing
     ownedAreas:
-      - src/main/java/com/prx/commons/services/loggers/
+      - src/main/java/com/umdc/commons/services/loggers/
       - src/main/resources/application.yml
-      - src/test/java/com/prx/commons/services/loggers/
+      - src/test/java/com/umdc/commons/services/loggers/
     rules:
       - LOG_INTERCEPTOR_CHAIN=LoggerWebConfigurer->LogInterceptor->LoggingService
       - NO_CONTROLLER_SPECIFIC_LOGGING_BYPASS
@@ -104,8 +104,8 @@ developer_agents:
       - EDIT_SRC_TEST
       - CREATE_TESTS
     off_limits:
-      - src/main/java/com/prx/commons/services/cloudflare/
-      - src/main/java/com/prx/commons/services/config/
+      - src/main/java/com/umdc/commons/services/cloudflare/
+      - src/main/java/com/umdc/commons/services/config/
       - pom.xml
       - .github/workflows/
     compatibility:
@@ -132,8 +132,8 @@ developer_agents:
       - api-compatibility
       - lightweight-unit-testing
     ownedAreas:
-      - src/main/java/com/prx/commons/services/cloudflare/
-      - src/test/java/com/prx/commons/services/cloudflare/
+      - src/main/java/com/umdc/commons/services/cloudflare/
+      - src/test/java/com/umdc/commons/services/cloudflare/
     rules:
       - KEEP_R2_PATH_STYLE
       - KEEP_R2_CHUNKED_ENCODING_DISABLED
@@ -148,8 +148,8 @@ developer_agents:
       - CREATE_TESTS
       - ADD_NEW_PROPERTIES_CLASSES
     off_limits:
-      - src/main/java/com/prx/commons/services/loggers/
-      - src/main/java/com/prx/commons/services/config/
+      - src/main/java/com/umdc/commons/services/loggers/
+      - src/main/java/com/umdc/commons/services/config/
       - pom.xml
       - .github/workflows/
     compatibility:
@@ -174,14 +174,14 @@ developer_agents:
       - jackson-configuration
       - lightweight-unit-testing
     ownedAreas:
-      - src/main/java/com/prx/commons/services/config/
-      - src/main/java/com/prx/commons/services/properties/
-      - src/main/java/com/prx/commons/services/rest/
-      - src/main/java/com/prx/commons/services/util/
-      - src/test/java/com/prx/commons/services/config/
-      - src/test/java/com/prx/commons/services/properties/
-      - src/test/java/com/prx/commons/services/rest/
-      - src/test/java/com/prx/commons/services/util/
+      - src/main/java/com/umdc/commons/services/config/
+      - src/main/java/com/umdc/commons/services/properties/
+      - src/main/java/com/umdc/commons/services/rest/
+      - src/main/java/com/umdc/commons/services/util/
+      - src/test/java/com/umdc/commons/services/config/
+      - src/test/java/com/umdc/commons/services/properties/
+      - src/test/java/com/umdc/commons/services/rest/
+      - src/test/java/com/umdc/commons/services/util/
     rules:
       - MAPSTRUCT_CONFIG=MapperAppConfig
       - MAPSTRUCT_COMPONENT_MODEL=SPRING
@@ -196,8 +196,8 @@ developer_agents:
       - CREATE_TESTS
       - ADD_NEW_PROPERTIES_CLASSES
     off_limits:
-      - src/main/java/com/prx/commons/services/cloudflare/
-      - src/main/java/com/prx/commons/services/loggers/
+      - src/main/java/com/umdc/commons/services/cloudflare/
+      - src/main/java/com/umdc/commons/services/loggers/
       - pom.xml
     compatibility:
       copilot: supported
