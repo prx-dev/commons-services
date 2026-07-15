@@ -149,7 +149,7 @@ coding_contracts:
     no_credential_logging: true
 
   mapstruct:
-    config_class: "com.prx.commons.services.config.mapper.MapperAppConfig"
+    config_class: "com.umdc.commons.services.config.mapper.MapperAppConfig"
     component_model: SPRING
     null_value_property_mapping_strategy: SET_TO_NULL
     unmapped_source_policy: IGNORE
@@ -163,8 +163,8 @@ coding_contracts:
   transfer_objects:
     use_java_records: true
     examples:
-      - com.prx.commons.services.cloudflare.to.PostProfileImageResponse
-      - com.prx.commons.services.cloudflare.to.GetProfileImageReferenceResponse
+      - com.umdc.commons.services.cloudflare.to.PostProfileImageResponse
+      - com.umdc.commons.services.cloudflare.to.GetProfileImageReferenceResponse
 
   logging_style:
     library: SLF4J
